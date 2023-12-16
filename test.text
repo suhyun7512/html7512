@@ -1,0 +1,23 @@
+var audio = new Audio();
+
+// 볼륨 바 엘리먼트 선택
+var volumeBar = $("#volume-bar");
+var volumeProgress = $("#volume-progress");
+
+// 볼륨 바 클릭 시 볼륨 조절
+volumeBar.on("click", function (event) {
+  var volumeBarPos = volumeBar.offset();
+  var clickPos = event.clientX - volumeBarPos.left;
+  var volumeLevel = clickPos / volumeBar.outerWidth();
+  audio.volume = volumeLevel;
+  updateVolumeBar();
+});
+
+// 초기 로딩 시 볼륨 바 업데이트
+updateVolumeBar();
+
+// 볼륨 바 업데이트 함수
+function updateVolumeBar() {
+  var volumePercent = audio.volume * 100;
+  volumeProgress.width(volumePercent + "%");
+}

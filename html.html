@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .thro-content {
+  display: none;
+}
+
+.thro-content.active {
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <ul id="thro-list">
+    <li data-target="thro-div1">Item 1</li>
+    <li data-target="thro-div2">Item 2</li>
+    <li data-target="thro-div3">Item 3</li>
+    <li data-target="thro-div4">Item 4</li>
+    <li data-target="thro-div5">Item 5</li>
+    <li data-target="thro-div6">Item 6</li>
+  </ul>
+  
+  <div id="thro-div1" class="thro-content">Content for Item 1</div>
+  <div id="thro-div2" class="thro-content">Content for Item 2</div>
+  <div id="thro-div3" class="thro-content">Content for Item 3</div>
+  <div id="thro-div4" class="thro-content">Content for Item 4</div>
+  <div id="thro-div5" class="thro-content">Content for Item 5</div>
+  <div id="thro-div6" class="thro-content">Content for Item 6</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const listItems = document.querySelectorAll("#thro-list li");
+  const contentDivs = document.querySelectorAll(".thro-content");
+
+  listItems.forEach(function(item) {
+    item.addEventListener("click", function() {
+      const targetId = item.getAttribute("data-target");
+      contentDivs.forEach(function(div) {
+        div.classList.remove("active");
+      });
+
+      const targetDiv = document.getElementById(targetId);
+      if (targetDiv) {
+        targetDiv.classList.add("active");
+      }
+    });
+  });
+});
+
+  </script>
+</body>
+</html>
